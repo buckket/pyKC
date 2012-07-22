@@ -4,8 +4,6 @@ import requests
 class HTTP(object):
 
 	def __init__(self, username=None, password=None, ssl=False):
-		pass
-
 		self.username = username
 		self.password = password
 		self.loggedIn = False

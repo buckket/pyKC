@@ -1,9 +1,5 @@
-from bs4 import BeautifulSoup
-import requests
-
 from krautchan.http import HTTP
 from krautchan.parser import Parser
-from krautchan.mod import Mod
 
 
 class Krautchan(object):
@@ -17,5 +13,4 @@ class Krautchan(object):
 			print "Ohne Anmeldung keine Nutzerinformationen"
 		else:
 			data = self.__http.getMod()
-			result = self.__parser.parseMod(data.text)
-			return Mod(result)
+			return self.__parser.parseMod(data.text)

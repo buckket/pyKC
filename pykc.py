@@ -7,4 +7,5 @@ mod = kc.getMod()
 
 print "%s (%s) ist Mod auf:" % (mod.username, mod.email)
 for board in mod.boards:
-	print "* %s (Kollegen sind: %s)"  % (board['board'], ', '.join(board['colleagues']))
+	print "* %s (Kollegen sind: %s)" % (board['board'], ', '.join(board['colleagues']))
+

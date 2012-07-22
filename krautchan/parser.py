@@ -1,6 +1,8 @@
 import re
 from bs4 import BeautifulSoup
 
+from krautchan.objects.mod import Mod
+
 
 class Parser(object):
 
@@ -17,5 +19,4 @@ class Parser(object):
 			else:
 				boards[-1]['colleagues'].append(element.text)
 
-		return {'username':username, 'email':email, 'boards':boards}
-		
+		return Mod(username=username, email=email, boards=boards)
