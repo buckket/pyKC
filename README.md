@@ -1,4 +1,5 @@
-# pyKC - Feed your snake with your favourite imageboard
+# pyKC 
+Feed your snake with your favourite imageboard
 
 ## Minimal Requirements
 
@@ -13,4 +14,4 @@ Modules:
 - get_modinfo()
 - get_thread()
 - get_post()
-- search_file(
+- search_file()
