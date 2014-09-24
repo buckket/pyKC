@@ -1,17 +1,16 @@
 # pyKC 
-Feed your snake with your favourite imageboard
+Feed your snake with your favourite imageboard.
 
 ## Minimal Requirements
 
 Core:
-- Python 2.7
+- Python 2
 
 Modules:
+- [lxml](http://lxml.de/)
+- [enum34](https://pypi.python.org/pypi/enum34)
 - [requests](http://docs.python-requests.org/en/latest/index.html)
 - [BeautifulSoup4](http://www.crummy.com/software/BeautifulSoup/)
 
 ## What I can do so far
-- get_modinfo()
-- get_thread()
-- get_post()
-- search_file()
+Check pykc/core.py :-)
