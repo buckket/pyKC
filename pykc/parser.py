@@ -126,7 +126,7 @@ class Parser(object):
             thread['posts'].append(Post(**reply))
 
         timer_end = time.clock()
-        print "%.2gs" % (timer_end - timer_start)
+        print("Finished in %.2gs." % (timer_end - timer_start))
         return Thread(**thread)
 
 
