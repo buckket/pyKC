@@ -17,11 +17,9 @@ class Krautchan(object):
     :param try_poster_info: try to extract poster information (requires mod status).
     """
 
-    def __init__(self, username=None, password=None, timeout=20.0, try_poster_info=False):
+    def __init__(self, username=None, password=None, timeout=20.0):
         self.__http = HTTP(username=username, password=password, timeout=timeout)
         self.__parser = Parser()
-
-        self.try_poster_info = try_poster_info
 
     def get_mod_info(self):
         """Parse the information available on the mod page and return a Mod object.
@@ -33,22 +31,22 @@ class Krautchan(object):
             data = self.__http.get_mod_info()
             return self.__parser.parse_mod_info(data.text)
 
-    def get_thread(self, board, post):
+    def get_thread(self, board, post, try_poster_info=False):
         """Parse a thread and return a Thread object.
 
         :param board: the board.
         :param post: the id of a post or the thread id.
         """
         data = self.__http.get_thread(board=board, post=post)
-        return self.__parser.parse_thread(board=board, data=data, try_poster_info=self.try_poster_info)
+        return self.__parser.parse_thread(board=board, data=data, try_poster_info=try_poster_info)
 
-    def get_post(self, board, post):
+    def get_post(self, board, post, try_poster_info=False):
         """Parse the hole thread and return a single post as Post object, for now.
 
         :param board: the board.
         :param post: the id of a specific post.
         """
-        data = self.get_thread(board=board, post=post)
+        data = self.get_thread(board=board, post=post, try_poster_info=try_poster_info)
         return data.posts[map(attrgetter('id'), data.posts).index(post)]
 
     def get_file(self, url):

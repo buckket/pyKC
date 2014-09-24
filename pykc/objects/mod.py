@@ -1,4 +1,5 @@
 import json
+import pickle
 
 
 class Mod(object):
@@ -10,3 +11,6 @@ class Mod(object):
 
     def to_json(self):
         return json.dumps(self.__dict__)
+
+    def to_pickle(self):
+        return pickle.dumps(self.__dict__)

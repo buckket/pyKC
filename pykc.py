@@ -9,7 +9,7 @@ print("\033[1mSearching for files:\033[0;0m")
 pprint.pprint(kc.search_file(name='rfk'), width=100)
 
 print("\n\033[1mParsing given thread.\033[0;0m")
-thread = kc.get_thread('rfk', '4860')
+thread = kc.get_thread('prog', '1698')
 
 print("\n\033[1mShowing thread class:\033[0;0m")
 pprint.pprint(thread.__dict__)

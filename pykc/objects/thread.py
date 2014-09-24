@@ -1,4 +1,5 @@
 import json
+import pickle
 
 
 class Thread(object):
@@ -9,11 +10,17 @@ class Thread(object):
         self.flags = flags
         self.posts = posts
 
-    def to_json(self):
+    def to_safe_dict(self):
         posts = []
         for post in self.posts:
             post_dict = post.to_safe_dict()
             posts.append(post_dict)
         thread = self.__dict__.copy()
         thread['posts'] = posts
-        return json.dumps(thread)
+        return thread
+
+    def to_json(self):
+        return json.dumps(self.to_safe_dict())
+
+    def to_pickle(self):
+        return pickle.dumps(self.to_safe_dict())

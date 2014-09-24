@@ -16,7 +16,7 @@ from .core import Krautchan
 from .objects import UserClass
 
 # Exceptions
-from .exceptions import UsageError, LoginError
+from .exceptions import UsageError, LoginError, ThreadNotFound
 
 
 __all__ = [
@@ -27,7 +27,7 @@ __all__ = [
     'UserClass',
 
     # Exceptions
-    'UsageError', 'LoginError'
+    'UsageError', 'LoginError', 'ThreadNotFound',
 ]
 
 

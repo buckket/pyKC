@@ -14,11 +14,9 @@ class HTTP(object):
 
         self.is_logged_in = False
 
+        self.__session = requests.session()
         if username and password:
-            self.__session = requests.session()
             self.__login()
-        else:
-            self.__session = requests.session()
 
     def __login(self):
         payload = {'username': self.username, 'password': self.password}
@@ -43,7 +41,7 @@ class HTTP(object):
         return self.__execute_request(self.base_url + '/login')
 
     def get_thread(self, board=None, post=None):
-        return self.__execute_request(self.base_url + '/resolve/' + board + '/' + post)
+        return self.__execute_request(self.base_url + '/resolve/' + str(board) + '/' + str(post))
 
     def get_file(self, url=None):
-        return self.__execute_request(self.base_url + url)
+        return self.__execute_request(self.base_url + str(url))

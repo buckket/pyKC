@@ -1,4 +1,5 @@
 import json
+import pickle
 
 
 class Post(object):
@@ -21,9 +22,12 @@ class Post(object):
         post = self.__dict__.copy()
 
         # Enum needs special handling.
-        post['level'] = int(post['level'])
+        post['level'] = post['level'].name
 
         return post
 
     def to_json(self):
         return json.dumps(self.to_safe_dict())
+
+    def to_pickle(self):
+        return pickle.dumps(self.to_safe_dict())

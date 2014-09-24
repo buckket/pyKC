@@ -53,7 +53,10 @@ class Parser(object):
         # Parse the original post.
         op = {}
         op['id'] = int(soup.find_all('a', {'class': 'quotelink'}, limit=2)[1].text)
-        op['subject'] = soup.find_all('span', {'class': 'postsubject'}, limit=1)[0].text
+
+        subject = soup.find_all('span', {'class': 'postsubject'}, limit=1)[0].text
+        op['subject'] = subject if subject else None
+
         op['name'] = soup.find_all('span', {'class': 'postername'}, limit=1)[0].text
         op['date'] = soup.find_all('span', {'class': 'postdate'}, limit=1)[0].text
         op['text'] = soup.select('#post_text_' + str(op['id']))[0].text
@@ -93,7 +96,10 @@ class Parser(object):
         for reply_section in soup.select('.postreply'):
             reply = {}
             reply['id'] = int(reply_section.select('.quotelink')[1].text)
-            reply['subject'] = reply_section.select('.postsubject')[0].text
+
+            subject = reply_section.select('.postsubject')[0].text
+            reply['subject'] = subject if subject else None
+
             reply['name'] = reply_section.select('.postername')[0].text
             reply['date'] = reply_section.select('.postdate')[0].text
             reply['text'] = reply_section.select('#post_text_' + str(reply['id']))[0].text
@@ -136,7 +142,7 @@ def extract_posterinfo(soup, post_id):
     info['ip'] = re.search(
         re.compile("((?:\d|[1-9]\d|1\d\d|2(?:[0-4]\d|5[0-5]))(?:\.(?:\d|[1-9]\d|1\d\d|2(?:[0-4]\d|5[0-5]))){3})"),
         posterinfo.text
-        ).group(0)
+    ).group(0)
     info['hostname'] = posterinfo.select('i')[0].text[1:-1]
     info['location'] = posterinfo.select('img')[0].next_element[8:-1]
     return info
