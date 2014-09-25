@@ -20,3 +20,6 @@ for post in thread.posts:
 
 print("\n\033[1mJSON representation:\033[0;0m")
 print(thread.to_json())
+
+print("\n\033[1mNewest post id on b:\033[0;0m")
+print(kc.get_newest_post_id('b'))

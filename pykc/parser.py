@@ -135,6 +135,13 @@ class Parser(object):
         print("Finished in %.2gs." % (timer_end - timer_start))
         return Thread(**thread)
 
+    @staticmethod
+    def parse_newest_post_id(data):
+        soup = BeautifulSoup(data.text, 'lxml')
+        thread = soup.find_all('div', {'class': 'thread'}, limit=1)[0]
+        posts = thread.find_all('a', {'class': 'quotelink'})
+        return int(posts[-1].text.strip())
+
 
 def extract_posterinfo(soup, post_id):
     info = {}

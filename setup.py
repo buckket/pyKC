@@ -19,7 +19,7 @@ setup(
 
     author='buckket',
 
-    packages=['pykc'],
+    packages=['pykc', 'pykc.objects'],
 
     zip_safe=True,
     include_package_data=True,

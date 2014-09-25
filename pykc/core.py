@@ -49,6 +49,14 @@ class Krautchan(object):
         data = self.get_thread(board=board, post=post, try_poster_info=try_poster_info)
         return data.posts[map(attrgetter('id'), data.posts).index(post)]
 
+    def get_newest_post_id(self, board):
+        """Parse the overview of a board and return the id of the newest post.
+
+        :param board: the board.
+        """
+        data = self.__http.get_overview(board)
+        return self.__parser.parse_newest_post_id(data)
+
     def get_file(self, url):
         """Return the requested file from KC.
         The base path will be added automatically.

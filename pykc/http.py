@@ -27,10 +27,10 @@ class HTTP(object):
         else:
             raise LoginError(json['messages'][0][1])
 
-    def __execute_request(self, url=None, params=None):
+    def __execute_request(self, url, params=None):
             return self.__session.get(url, params=params, timeout=self.timeout)
 
-    def get_search_file(self, name=None, strict=False):
+    def get_search_file(self, name, strict=False):
         if strict:
             payload = {'name': name, 'mode': 'exact'}
         else:
@@ -40,8 +40,11 @@ class HTTP(object):
     def get_mod_info(self):
         return self.__execute_request(self.base_url + '/login')
 
-    def get_thread(self, board=None, post=None):
+    def get_thread(self, board, post):
         return self.__execute_request(self.base_url + '/resolve/' + str(board) + '/' + str(post))
 
-    def get_file(self, url=None):
+    def get_overview(self, board):
+        return self.__execute_request(self.base_url + '/' + str(board) + '/')
+
+    def get_file(self, url):
         return self.__execute_request(self.base_url + str(url))
