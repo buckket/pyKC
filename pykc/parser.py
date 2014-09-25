@@ -7,7 +7,7 @@ from .objects import UserClass
 from .objects.mod import Mod
 from .objects.post import Post
 from .objects.thread import Thread
-from .exceptions import ThreadNotFound
+from .exceptions import ThreadNotFound, KCError
 
 
 class Parser(object):
@@ -37,6 +37,9 @@ class Parser(object):
         timer_start = time.clock()
         soup = BeautifulSoup(data.text, 'lxml')
 
+        if soup.title.string == "Fehler":
+            raise KCError()
+
         message_text = soup.find_all('td', {'class': 'message_text'}, limit=1)
         if message_text:
             if re.search('existiert nicht|does not exist', message_text[0].text):
@@ -59,7 +62,7 @@ class Parser(object):
 
         op['name'] = soup.find_all('span', {'class': 'postername'}, limit=1)[0].text
         op['date'] = soup.find_all('span', {'class': 'postdate'}, limit=1)[0].text
-        op['text'] = soup.select('#post_text_' + str(op['id']))[0].text
+        op['text'] = repair_string(soup.select('#post_text_' + str(op['id']))[0].contents)
 
         op['tripcode'] = post_header.select('.tripcode')[0].text if \
             post_header.select('.tripcode') else None
@@ -102,7 +105,7 @@ class Parser(object):
 
             reply['name'] = reply_section.select('.postername')[0].text
             reply['date'] = reply_section.select('.postdate')[0].text
-            reply['text'] = reply_section.select('#post_text_' + str(reply['id']))[0].text
+            reply['text'] = repair_string(reply_section.select('#post_text_' + str(reply['id']))[0].contents)
 
             reply['tripcode'] = reply_section.select('.tripcode')[0].text if \
                 reply_section.select('.tripcode') else None
@@ -141,6 +144,16 @@ class Parser(object):
         thread = soup.find_all('div', {'class': 'thread'}, limit=1)[0]
         posts = thread.find_all('a', {'class': 'quotelink'})
         return int(posts[-1].text.strip())
+
+
+def repair_string(data):
+    string = ''
+    for element in data:
+        if element.name == 'br':
+            string += '\n'
+        elif element.name is None:
+            string += element
+    return string
 
 
 def extract_posterinfo(soup, post_id):
