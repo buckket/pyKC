@@ -27,7 +27,7 @@ setup(
     install_requires=['BeautifulSoup4', 'requests', 'lxml', 'enum34'],
 
     description='Parse your favorite imageboard using Python.',
-    long_description=open('./README.md', 'r').read(),
+    long_description=open('./README.rst', 'r').read(),
     keywords='imageboard, kc',
 
     license='WTFPL',

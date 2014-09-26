@@ -147,6 +147,7 @@ class Parser(object):
 
 
 def repair_string(data):
+    # TODO: There has to be a better solution :(
     string = ''
     for element in data:
         if element.name == 'br':
