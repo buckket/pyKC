@@ -32,7 +32,7 @@ Features:
     # Create a Krautchan instance.
     #
     # If you happen to be a mod/admin try the following:
-    # kc = Krautchan(username='foo', password='bar)
+    # kc = Krautchan(username='foo', password='bar')
     #
     # Congratulations, you now have access to some nifty special features! :3
     kc = Krautchan()

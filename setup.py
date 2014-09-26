@@ -24,11 +24,16 @@ setup(
     zip_safe=True,
     include_package_data=True,
 
-    install_requires=['BeautifulSoup4', 'requests', 'lxml', 'enum34'],
+    install_requires=[
+        'BeautifulSoup4>=4.3.2',
+        'requests>=2.4.1',
+        'lxml>=3.4.0',
+        'enum34>=1.0'
+    ],
 
-    description='Parse your favorite imageboard using Python.',
+    description='Feed your snake with your favourite imageboard.',
     long_description=open('./README.rst', 'r').read(),
-    keywords='imageboard, kc',
+    keywords='imageboard, kc, parser',
 
     license='WTFPL',
     classifiers=[
