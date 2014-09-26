@@ -1,11 +1,7 @@
 pyKC
 ####
 
-Feed your snake with your favourite imageboard.
-
-
-| **In other words:**
-| This Python library provides high-level access to a KC thread and/or post (including all available metadata) by parsing the HTML source, additionally various endpoints of the KC AJAX API can be called.
+This Python library provides high-level access to a KC thread and/or post (including all available metadata) by parsing the HTML source, additionally various endpoints of the KC AJAX API can be called.
 
 Minimal Requirements:
 ---------------------

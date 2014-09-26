@@ -21,8 +21,9 @@ setup(
 
     packages=['pykc', 'pykc.objects'],
 
-    zip_safe=True,
+    zip_safe=False,
     include_package_data=True,
+    platforms='any',
 
     install_requires=[
         'BeautifulSoup4>=4.3.2',
@@ -37,8 +38,10 @@ setup(
 
     license='WTFPL',
     classifiers=[
-        'Development Status :: 3 - Alpha',
-        'Operating System :: OS Independent',
+        'Development Status :: 4 - Beta',
         'License :: Public Domain',
+        'Operating System :: OS Independent',
+        'Intended Audience :: Developers',
+        'Programming Language :: Python',
     ],
 )
